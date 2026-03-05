@@ -1,0 +1,337 @@
+:root {
+  --bg: #0b0e14;
+  --panel: #171c26;
+  --panel-2: #1c2230;
+  --line: #2d3850;
+  --accent: #00ff99;
+  --good: #00e676;
+  --key: #2a3140;
+  --text-soft: #aab4c8;
+  --visor-panel: #162338;
+  --visor-line: #274368;
+  --visor-accent: #58b8ff;
+  --visor-importe: #ffb24d;
+  --gap: 8px;
+  --key-h: 66px;
+  --keyboard-height: calc(var(--key-h) * 4 + var(--gap) * 3);
+}
+
+body {
+  margin: 0;
+  font-family: "Segoe UI", Tahoma, sans-serif;
+  background: radial-gradient(circle at top, #111827, var(--bg) 58%);
+  color: #fff;
+}
+
+#root {
+  min-height: 100dvh;
+}
+
+.container {
+  height: 100dvh;
+  padding: var(--gap);
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  gap: var(--gap);
+  overflow: hidden;
+}
+
+.barra {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--gap);
+}
+
+.barra-resumen {
+  display: grid;
+  grid-template-columns: 0.85fr 2.15fr;
+  gap: var(--gap);
+}
+
+.dato {
+  background: linear-gradient(160deg, #131926, #0e1420);
+  border: 1px solid #202a3d;
+  border-radius: 12px;
+  padding: 10px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.dato-titulo {
+  font-size: 12px;
+  color: var(--text-soft);
+  letter-spacing: 0.06em;
+}
+
+.dato strong {
+  line-height: 1;
+  font-family: "Consolas", "Courier New", monospace;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.empleado-dato strong {
+  font-size: clamp(40px, 6vw, 62px);
+}
+
+.articulos-dato strong {
+  font-size: clamp(40px, 7vw, 66px);
+}
+
+.total-dato strong {
+  color: var(--good);
+  font-size: clamp(40px, 6.4vw, 78px);
+}
+
+.contenido {
+  min-height: 0;
+  overflow: hidden;
+  display: grid;
+  grid-template-rows: minmax(0, 1fr);
+  gap: var(--gap);
+}
+
+.contenido.en-carga {
+  grid-template-rows: auto minmax(0, 1fr);
+}
+
+.visor {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--gap);
+}
+
+.estado-carga {
+  grid-column: 1 / -1;
+  border-radius: 10px;
+  padding: 6px 10px;
+  font-size: 14px;
+  letter-spacing: 0.06em;
+  font-weight: 700;
+  text-align: center;
+}
+
+.estado-carga.precio {
+  color: #b5dcff;
+  background: rgba(42, 92, 153, 0.22);
+  border: 1px solid rgba(88, 184, 255, 0.4);
+}
+
+.estado-carga.peso {
+  color: #ffe0b0;
+  background: rgba(153, 89, 29, 0.22);
+  border: 1px solid rgba(255, 178, 77, 0.5);
+}
+
+.visor .pantalla {
+  background: linear-gradient(160deg, var(--visor-panel), #101a2c);
+  border-radius: 12px;
+  padding: 8px 10px;
+  border: 1px solid var(--visor-line);
+  min-height: 84px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.visor .pantalla.activa {
+  border: 2px solid var(--visor-accent);
+  box-shadow: 0 0 0 1px rgba(88, 184, 255, 0.2) inset;
+}
+
+.visor.carga .pantalla-importe {
+  grid-column: 1 / -1;
+  min-height: 94px;
+  border-color: #93642a;
+  background: linear-gradient(160deg, #2b1f10, #1a140d);
+}
+
+.visor.carga .pantalla-precio,
+.visor.carga .pantalla-peso {
+  cursor: pointer;
+}
+
+.titulo {
+  font-size: 11px;
+  color: var(--text-soft);
+  letter-spacing: 0.07em;
+}
+
+.valor {
+  font-size: clamp(38px, 5.5vw, 60px);
+  font-family: "Consolas", "Courier New", monospace;
+  line-height: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.importe-color {
+  color: var(--visor-importe);
+  font-size: clamp(44px, 6.6vw, 76px);
+}
+
+.lista {
+  min-height: 0;
+  overflow-y: auto;
+  border-radius: 12px;
+  border: 1px solid var(--line);
+  background: rgba(8, 12, 20, 0.82);
+}
+
+.lista-head,
+.item {
+  display: grid;
+  grid-template-columns: 0.5fr 1.1fr 1fr 1.25fr;
+  gap: 8px;
+  align-items: center;
+  padding: 8px 10px;
+}
+
+.lista-head {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  background: linear-gradient(180deg, #1b2434, #18202e);
+  border-bottom: 1px solid var(--line);
+  font-size: 12px;
+  color: var(--text-soft);
+}
+
+.item {
+  border-bottom: 1px solid #1a2230;
+  font-family: "Consolas", "Courier New", monospace;
+  font-size: clamp(16px, 2vw, 23px);
+}
+
+.item strong {
+  color: #f4f8ff;
+}
+
+.lista-vacia {
+  padding: 14px 10px;
+  color: var(--text-soft);
+  font-size: 14px;
+}
+
+.teclado {
+  height: var(--keyboard-height);
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--gap);
+  align-self: end;
+}
+
+.teclado button {
+  height: var(--key-h);
+  border: none;
+  border-radius: 14px;
+  background: linear-gradient(180deg, #2f3849, var(--key));
+  color: #fff;
+  font-size: clamp(28px, 4.4vw, 40px);
+  font-weight: 600;
+  font-family: "Segoe UI", Tahoma, sans-serif;
+}
+
+.del-arriba {
+  background: linear-gradient(180deg, #f8c045, #e79d12) !important;
+  color: #101010 !important;
+}
+
+.sumar {
+  background: linear-gradient(180deg, #1be67a, #00c853) !important;
+}
+
+.sumar-grande {
+  grid-column: 4;
+  grid-row: 2 / span 2;
+  height: calc(var(--key-h) * 2 + var(--gap)) !important;
+  font-size: clamp(42px, 6.2vw, 56px) !important;
+}
+
+.igual {
+  background: linear-gradient(180deg, #4e80ff, #2962ff) !important;
+}
+
+.igual-abajo {
+  grid-column: 4;
+  grid-row: 4;
+}
+
+.multiplicar {
+  background: linear-gradient(180deg, #ffca49, #f2a71b) !important;
+  color: #121212 !important;
+}
+
+@media (max-width: 560px) {
+  :root {
+    --key-h: 60px;
+    --gap: 7px;
+  }
+
+  .dato {
+    padding: 8px 9px;
+  }
+
+  .dato-titulo {
+    font-size: 11px;
+  }
+
+  .empleado-dato strong {
+    font-size: clamp(28px, 8vw, 42px);
+  }
+
+  .articulos-dato strong {
+    font-size: clamp(30px, 9vw, 46px);
+  }
+
+  .total-dato strong {
+    font-size: clamp(30px, 8.8vw, 56px);
+  }
+
+  .visor .pantalla {
+    min-height: 74px;
+  }
+
+  .valor {
+    font-size: clamp(28px, 7.4vw, 44px);
+  }
+
+  .importe-color {
+    font-size: clamp(32px, 8.8vw, 52px);
+  }
+
+  .lista-head,
+  .item {
+    padding: 7px 8px;
+    font-size: 14px;
+  }
+
+  .teclado button {
+    font-size: clamp(24px, 7vw, 34px);
+  }
+
+  .sumar-grande {
+    font-size: clamp(36px, 10vw, 48px) !important;
+  }
+}
+
+@media (max-height: 780px) {
+  :root {
+    --key-h: 56px;
+  }
+
+  .visor .pantalla {
+    min-height: 68px;
+  }
+
+  .valor {
+    font-size: clamp(26px, 5.8vw, 40px);
+  }
+
+  .importe-color {
+    font-size: clamp(30px, 6.7vw, 48px);
+  }
+}
